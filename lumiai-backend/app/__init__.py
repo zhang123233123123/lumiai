@@ -1,0 +1,3 @@
+"""
+LumiAI Backend - App Package
+"""

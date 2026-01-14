@@ -1,0 +1,3 @@
+"""
+LumiAI - Schemas Package
+"""
