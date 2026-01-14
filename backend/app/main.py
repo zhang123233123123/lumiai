@@ -7,7 +7,7 @@ from contextlib import asynccontextmanager
 
 from app.config import get_settings
 from app.database import init_db
-from app.routers import auth, questions, practice, analysis, vocabulary, chat
+from app.routers import auth, questions, practice, analysis, vocabulary, chat, ui
 from app.seed_data import seed_database
 
 
@@ -46,6 +46,7 @@ app.include_router(practice.router, prefix="/api/practice", tags=["练习"])
 app.include_router(analysis.router, prefix="/api/analysis", tags=["分析"])
 app.include_router(vocabulary.router, prefix="/api/vocabulary", tags=["生词本"])
 app.include_router(chat.router, prefix="/api/chat", tags=["AI对话"])
+app.include_router(ui.router, prefix="/api/ui", tags=["前端聚合"])
 
 
 @app.get("/api/health")

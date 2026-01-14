@@ -6,7 +6,7 @@
 
 - **框架**: FastAPI
 - **数据库**: SQLite + SQLAlchemy
-- **AI**: Google Gemini API
+- **AI**: DeepSeek API
 - **验证**: Pydantic
 
 ## 快速开始
@@ -14,7 +14,7 @@
 ### 1. 安装依赖
 
 ```bash
-cd lumiai-backend
+cd backend
 python -m venv venv
 # Windows
 .\venv\Scripts\activate
@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 ### 2. 配置环境变量
 
-复制 `.env.example` 为 `.env`，并填入你的 Gemini API Key：
+复制 `.env.example` 为 `.env`，并填入你的 DeepSeek API Key：
 
 ```bash
 cp .env.example .env
@@ -34,7 +34,7 @@ cp .env.example .env
 
 编辑 `.env` 文件：
 ```
-GEMINI_API_KEY=你的API密钥
+DEEPSEEK_API_KEY=你的API密钥
 ```
 
 ### 3. 启动服务
@@ -57,11 +57,12 @@ python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 | 分析 | `/api/analysis/*` | 错题分析/技能评估 |
 | 生词 | `/api/vocabulary/*` | 生词本管理 |
 | 对话 | `/api/chat/*` | AI 导师对话 |
+| 前端聚合 | `/api/ui/*` | 新前端页面所需的聚合数据 |
 
 ## 项目结构
 
 ```
-lumiai-backend/
+backend/
 ├── app/
 │   ├── main.py           # 应用入口
 │   ├── config.py         # 配置管理
@@ -83,7 +84,7 @@ lumiai-backend/
 将前端的 `services/geminiService.ts` 中的直接 API 调用改为调用后端接口：
 
 ```typescript
-// 原来：直接调用 Gemini API
+// 原来：直接调用第三方 AI API
 // 现在：调用后端 /api/chat 接口
 
 const BACKEND_URL = 'http://localhost:8000';

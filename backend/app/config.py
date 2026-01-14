@@ -8,8 +8,8 @@ from functools import lru_cache
 class Settings(BaseSettings):
     """应用配置"""
     
-    # Gemini API
-    gemini_api_key: str = ""
+    # DeepSeek API
+    deepseek_api_key: str = ""
     
     # 数据库
     database_url: str = "sqlite:///./lumiai.db"
@@ -24,6 +24,8 @@ class Settings(BaseSettings):
         "http://localhost:3000",
         "http://127.0.0.1:5173",
         "http://127.0.0.1:3000",
+        "http://152.42.172.247",  # 生产环境
+        "https://152.42.172.247",
     ]
     
     class Config:

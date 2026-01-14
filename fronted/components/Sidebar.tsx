@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, BookOpen, BarChart2, Settings, Home, PieChart } from 'lucide-react';
+import { LayoutDashboard, BookOpen, PieChart, Settings, Home, Layers, Zap, Database } from 'lucide-react';
 import { ViewState } from '../App';
 
 interface SidebarProps {
@@ -11,7 +11,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => {
   return (
     <aside className="fixed left-0 top-0 h-full w-24 flex flex-col items-center py-8 z-50 hidden md:flex glass-panel border-r border-white/40 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
       {/* Logo */}
-      <div className="mb-12 cursor-pointer group" onClick={() => onNavigate('intro')}>
+      <div className="mb-10 cursor-pointer group" onClick={() => onNavigate('intro')}>
         <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg shadow-lg group-hover:scale-110 group-hover:shadow-blue-500/30 transition-all duration-500 ease-out relative overflow-hidden">
           <span className="relative z-10">L</span>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -19,31 +19,48 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => {
       </div>
 
       {/* Nav Items */}
-      <nav className="flex-1 flex flex-col gap-8 w-full items-center">
+      <nav className="flex-1 flex flex-col gap-6 w-full items-center">
         <NavItem 
           icon={<Home size={22} />} 
           active={currentView === 'intro'} 
           onClick={() => onNavigate('intro')}
-          tooltip="首页"
+          tooltip="首页 (Home)"
         />
         <NavItem 
           icon={<LayoutDashboard size={22} />} 
           active={currentView === 'dashboard'} 
           onClick={() => onNavigate('dashboard')}
-          tooltip="仪表盘"
+          tooltip="仪表盘 (Dashboard)"
         />
+        
         <div className="w-8 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent my-1 opacity-50"></div>
+        
+        <NavItem 
+          icon={<Layers size={22} />} 
+          active={currentView === 'foundation'}
+          onClick={() => onNavigate('foundation')} 
+          tooltip="核心能力 (Core Systems)"
+        />
         <NavItem 
           icon={<BookOpen size={22} />} 
           active={currentView === 'practice'}
           onClick={() => onNavigate('practice')} 
-          tooltip="真题练习"
+          tooltip="全真模考 (Simulation)"
         />
+        <NavItem 
+          icon={<Zap size={22} />} 
+          active={currentView === 'weakness'}
+          onClick={() => onNavigate('weakness')} 
+          tooltip="薄弱点爆破 (Hull Repair)"
+        />
+        
+        <div className="w-8 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent my-1 opacity-50"></div>
+
         <NavItem 
           icon={<PieChart size={22} />} 
           active={currentView === 'analysis'}
           onClick={() => onNavigate('analysis')} 
-          tooltip="学情分析"
+          tooltip="任务日志 (Mission Log)"
         />
       </nav>
 

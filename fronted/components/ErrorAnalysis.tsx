@@ -2,14 +2,22 @@ import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { ErrorMetric } from '../types';
 
-const data: ErrorMetric[] = [
+const fallbackMetrics: ErrorMetric[] = [
   { name: '复杂语法', value: 45, color: '#0071e3' }, // Apple Blue
   { name: '词汇缺口', value: 30, color: '#5e5ce6' }, // Indigo
   { name: '逻辑陷阱', value: 15, color: '#32ade6' }, // Cyan
   { name: '格式错误', value: 10, color: '#e5e5ea' }, // Light Gray
 ];
 
-const ErrorAnalysis: React.FC = () => {
+interface ErrorAnalysisProps {
+  metrics?: ErrorMetric[];
+  pendingCount?: number;
+}
+
+const ErrorAnalysis: React.FC<ErrorAnalysisProps> = ({ metrics, pendingCount }) => {
+  const data = metrics?.length ? metrics : fallbackMetrics;
+  const pending = pendingCount ?? 12;
+
   return (
     <div className="h-[400px] rounded-[32px] glass-panel p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between hover:shadow-[0_20px_40px_rgb(0,0,0,0.06)] transition-all duration-500 border border-white/60">
       <div>
@@ -42,7 +50,7 @@ const ErrorAnalysis: React.FC = () => {
         
         {/* Center Text */}
         <div className="absolute inset-0 flex items-center justify-center flex-col pointer-events-none">
-          <span className="text-4xl font-bold text-[#1D1D1F]">12</span>
+          <span className="text-4xl font-bold text-[#1D1D1F]">{pending}</span>
           <span className="text-xs text-gray-400 uppercase tracking-wide font-medium">待处理项</span>
         </div>
       </div>

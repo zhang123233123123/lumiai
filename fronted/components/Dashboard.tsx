@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import LearningPulse from './LearningPulse';
 import ErrorAnalysis from './ErrorAnalysis';
 import Recommendations from './Recommendations';
 import { Bell, Search } from 'lucide-react';
 import { ViewState } from '../App';
+import { DashboardData } from '../types';
+import { getDashboardData } from '../services/uiService';
 
 interface DashboardProps {
   onNavigate: (view: ViewState) => void;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    getDashboardData()
+      .then((data) => {
+        if (isMounted) {
+          setDashboardData(data);
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load dashboard data:', error);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <main className="flex-1 min-h-screen pl-0 md:pl-24 pr-0 md:pr-8 py-8 md:py-10 max-w-[1600px] mx-auto z-10 relative">
       {/* Top Header */}
@@ -43,16 +63,22 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
         
         {/* Top Full Width - Learning Pulse */}
         <div className="col-span-12 transform hover:scale-[1.01] transition-transform duration-500">
-           <LearningPulse />
+           <LearningPulse data={dashboardData?.learning_pulse} />
         </div>
 
         {/* Middle Row */}
         <div className="col-span-12 lg:col-span-5 transform hover:scale-[1.01] transition-transform duration-500">
-           <ErrorAnalysis />
+           <ErrorAnalysis
+             metrics={dashboardData?.error_metrics.metrics}
+             pendingCount={dashboardData?.error_metrics.pending_count}
+           />
         </div>
         
         <div className="col-span-12 lg:col-span-7 transform hover:scale-[1.01] transition-transform duration-500">
-           <Recommendations onNavigate={() => onNavigate('practice')} />
+           <Recommendations
+             onNavigate={() => onNavigate('practice')}
+             recommendations={dashboardData?.recommendations}
+           />
         </div>
       </div>
     </main>

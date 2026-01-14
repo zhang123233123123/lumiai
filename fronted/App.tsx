@@ -5,10 +5,12 @@ import IntroPage from './components/IntroPage';
 import PracticePage from './components/PracticePage';
 import AnalysisPage from './components/AnalysisPage';
 import SettingsPage from './components/SettingsPage';
+import FoundationPage from './components/FoundationPage';
+import WeaknessPage from './components/WeaknessPage';
 import AITutor from './components/AITutor';
 import ParticleBackground from './components/ParticleBackground';
 
-export type ViewState = 'intro' | 'dashboard' | 'practice' | 'analysis' | 'settings';
+export type ViewState = 'intro' | 'dashboard' | 'practice' | 'analysis' | 'settings' | 'foundation' | 'weakness';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('intro');
@@ -87,6 +89,8 @@ const App: React.FC = () => {
         {currentView === 'dashboard' && <Dashboard onNavigate={setCurrentView} />}
         {currentView === 'practice' && <PracticePage />}
         {currentView === 'analysis' && <AnalysisPage isDarkMode={isDarkMode} />}
+        {currentView === 'foundation' && <FoundationPage isDarkMode={isDarkMode} />}
+        {currentView === 'weakness' && <WeaknessPage isDarkMode={isDarkMode} />}
         {currentView === 'settings' && (
           <SettingsPage 
             settings={{ isDarkMode, showParticles, playNoise }}
