@@ -130,7 +130,7 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ isDarkMode }) => {
                 </div>
                 <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg flex-1">
                    <span className="font-bold text-green-500 block mb-1">Strength</span>
-                   Fill-in-the-blanks remains stable > 85%.
+                   Fill-in-the-blanks remains stable {'>'} 85%.
                 </div>
              </div>
           </div>
