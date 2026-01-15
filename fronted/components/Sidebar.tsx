@@ -20,53 +20,53 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => {
 
       {/* Nav Items */}
       <nav className="flex-1 flex flex-col gap-6 w-full items-center">
-        <NavItem 
-          icon={<Home size={22} />} 
-          active={currentView === 'intro'} 
+        <NavItem
+          icon={<Home size={22} />}
+          active={currentView === 'intro'}
           onClick={() => onNavigate('intro')}
-          tooltip="首页 (Home)"
+          tooltip="首页"
         />
-        <NavItem 
-          icon={<LayoutDashboard size={22} />} 
-          active={currentView === 'dashboard'} 
+        <NavItem
+          icon={<LayoutDashboard size={22} />}
+          active={currentView === 'dashboard'}
           onClick={() => onNavigate('dashboard')}
-          tooltip="仪表盘 (Dashboard)"
+          tooltip="仪表盘"
         />
-        
-        <div className="w-8 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent my-1 opacity-50"></div>
-        
-        <NavItem 
-          icon={<Layers size={22} />} 
-          active={currentView === 'foundation'}
-          onClick={() => onNavigate('foundation')} 
-          tooltip="核心能力 (Core Systems)"
-        />
-        <NavItem 
-          icon={<BookOpen size={22} />} 
-          active={currentView === 'practice'}
-          onClick={() => onNavigate('practice')} 
-          tooltip="全真模考 (Simulation)"
-        />
-        <NavItem 
-          icon={<Zap size={22} />} 
-          active={currentView === 'weakness'}
-          onClick={() => onNavigate('weakness')} 
-          tooltip="薄弱点爆破 (Hull Repair)"
-        />
-        
+
         <div className="w-8 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent my-1 opacity-50"></div>
 
-        <NavItem 
-          icon={<PieChart size={22} />} 
+        <NavItem
+          icon={<Layers size={22} />}
+          active={currentView === 'foundation'}
+          onClick={() => onNavigate('foundation')}
+          tooltip="核心能力"
+        />
+        <NavItem
+          icon={<BookOpen size={22} />}
+          active={currentView === 'practice'}
+          onClick={() => onNavigate('practice')}
+          tooltip="全真模考"
+        />
+        <NavItem
+          icon={<Zap size={22} />}
+          active={currentView === 'weakness'}
+          onClick={() => onNavigate('weakness')}
+          tooltip="薄弱点爆破"
+        />
+
+        <div className="w-8 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent my-1 opacity-50"></div>
+
+        <NavItem
+          icon={<PieChart size={22} />}
           active={currentView === 'analysis'}
-          onClick={() => onNavigate('analysis')} 
-          tooltip="任务日志 (Mission Log)"
+          onClick={() => onNavigate('analysis')}
+          tooltip="任务日志"
         />
       </nav>
 
       {/* Bottom Actions */}
       <div className="flex flex-col gap-6 items-center mb-4">
-        <button 
+        <button
           onClick={() => onNavigate('settings')}
           className={`
             p-3 rounded-2xl transition-all duration-300
@@ -92,12 +92,12 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ icon, active, onClick, tooltip }) => {
   return (
-    <button 
+    <button
       onClick={onClick}
       className={`
         p-3.5 rounded-[18px] transition-all duration-500 group relative
-        ${active 
-          ? 'bg-black text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] scale-110' 
+        ${active
+          ? 'bg-black text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] scale-110'
           : 'text-gray-400 hover:text-black hover:bg-white/80 hover:shadow-lg hover:shadow-blue-500/5'
         }
       `}

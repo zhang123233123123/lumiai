@@ -67,15 +67,15 @@ const AITutor: React.FC = () => {
   // 1. Floating Trigger Button (The Mini Black Hole)
   if (!isOpen) {
     return (
-      <button 
+      <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-8 right-8 w-20 h-20 rounded-full cursor-pointer z-[100] group transition-transform duration-500 hover:scale-110 active:scale-95"
       >
         <LuminaAvatar size="md" className="w-full h-full" state="idle" />
-        
+
         {/* Tooltip HUD */}
         <div className="absolute -top-12 right-0 bg-black/80 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap transform translate-y-2 group-hover:translate-y-0">
-           <span className="text-xs font-mono text-orange-300 tracking-widest uppercase">Lumina Online</span>
+          <span className="text-xs font-mono text-orange-300 tracking-widest uppercase">Lumina 在线</span>
         </div>
       </button>
     );
@@ -87,25 +87,25 @@ const AITutor: React.FC = () => {
       ${isExpanded ? 'inset-4 rounded-[32px]' : 'bottom-8 right-8 w-[400px] h-[650px] rounded-[32px]'}
       bg-black/60 backdrop-blur-[40px] border border-white/20 shadow-2xl ring-1 ring-white/10
     `}>
-      
+
       {/* HUD Header */}
       <div className="h-20 px-6 flex items-center justify-between border-b border-white/10 bg-gradient-to-r from-white/5 to-transparent relative overflow-hidden">
         {/* Scanning line effect */}
         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"></div>
-        
+
         <div className="flex items-center gap-4">
-            <LuminaAvatar size="sm" state={isLoading ? 'thinking' : 'idle'} />
-            <div>
-                <h3 className="font-bold text-white tracking-wide text-lg">Lumina AI</h3>
-                <p className="text-[10px] text-orange-300/80 font-mono tracking-widest uppercase flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                    Singularity Connected
-                </p>
-            </div>
+          <LuminaAvatar size="sm" state={isLoading ? 'thinking' : 'idle'} />
+          <div>
+            <h3 className="font-bold text-white tracking-wide text-lg">Lumina AI</h3>
+            <p className="text-[10px] text-orange-300/80 font-mono tracking-widest uppercase flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+              奇点已连接
+            </p>
+          </div>
         </div>
         <div className="flex items-center gap-2 text-gray-400">
-            <button onClick={() => setIsExpanded(!isExpanded)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><Maximize2 size={16} /></button>
-            <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X size={18} /></button>
+          <button onClick={() => setIsExpanded(!isExpanded)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><Maximize2 size={16} /></button>
+          <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X size={18} /></button>
         </div>
       </div>
 
@@ -117,14 +117,14 @@ const AITutor: React.FC = () => {
         {messages.map((msg) => (
           <div key={msg.id} className={`flex w-full ${msg.role === 'user' ? 'justify-end' : 'justify-start'} relative z-10 animate-in fade-in slide-in-from-bottom-2 duration-300`}>
             {msg.role === 'model' && (
-               <div className="mr-3 mt-1 opacity-80 hidden sm:block">
-                 <LuminaAvatar size="sm" className="w-8 h-8" />
-               </div>
+              <div className="mr-3 mt-1 opacity-80 hidden sm:block">
+                <LuminaAvatar size="sm" className="w-8 h-8" />
+              </div>
             )}
             <div className={`
               max-w-[85%] px-6 py-4 rounded-2xl text-[15px] leading-relaxed shadow-lg backdrop-blur-md border
-              ${msg.role === 'user' 
-                ? 'bg-[#0071e3]/80 text-white rounded-tr-sm border-[#0071e3]' 
+              ${msg.role === 'user'
+                ? 'bg-[#0071e3]/80 text-white rounded-tr-sm border-[#0071e3]'
                 : 'bg-white/10 text-gray-100 rounded-tl-sm border-white/10'
               }
             `}>
@@ -133,11 +133,11 @@ const AITutor: React.FC = () => {
           </div>
         ))}
         {isLoading && (
-           <div className="flex w-full justify-start relative z-10">
-             <div className="ml-11 bg-white/5 border border-white/10 px-4 py-3 rounded-2xl rounded-tl-sm flex gap-2 items-center">
-                <span className="text-xs text-orange-300 font-mono animate-pulse">Computing...</span>
-             </div>
-           </div>
+          <div className="flex w-full justify-start relative z-10">
+            <div className="ml-11 bg-white/5 border border-white/10 px-4 py-3 rounded-2xl rounded-tl-sm flex gap-2 items-center">
+              <span className="text-xs text-orange-300 font-mono animate-pulse">计算中...</span>
+            </div>
+          </div>
         )}
         <div ref={messagesEndRef} />
       </div>
@@ -155,16 +155,16 @@ const AITutor: React.FC = () => {
             disabled={isLoading}
           />
           <div className="absolute right-2 flex items-center gap-1">
-             <button className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
-                <Mic size={18} />
-             </button>
-             <button 
-                onClick={handleSend}
-                disabled={!inputText.trim() || isLoading}
-                className="p-2 rounded-full bg-gradient-to-tr from-orange-600 to-orange-400 text-white hover:shadow-[0_0_15px_rgba(255,165,0,0.5)] disabled:opacity-50 disabled:shadow-none transition-all transform hover:scale-105 active:scale-95"
-              >
-                <Send size={16} fill="currentColor" />
-             </button>
+            <button className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
+              <Mic size={18} />
+            </button>
+            <button
+              onClick={handleSend}
+              disabled={!inputText.trim() || isLoading}
+              className="p-2 rounded-full bg-gradient-to-tr from-orange-600 to-orange-400 text-white hover:shadow-[0_0_15px_rgba(255,165,0,0.5)] disabled:opacity-50 disabled:shadow-none transition-all transform hover:scale-105 active:scale-95"
+            >
+              <Send size={16} fill="currentColor" />
+            </button>
           </div>
         </div>
       </div>
