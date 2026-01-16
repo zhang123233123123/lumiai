@@ -28,7 +28,7 @@ const IntroPage: React.FC<IntroPageProps> = ({ onStart }) => {
           </div>
 
           <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-[#1D1D1F] leading-[1.1] drop-shadow-sm max-w-4xl">
-            Insight IELTS AI
+            Lumi AI
           </h1>
           <p className="mt-6 text-3xl md:text-4xl font-light text-gray-400 max-w-3xl leading-relaxed">
             重塑备考的<span className="text-[#1D1D1F] font-medium">深度诊断引擎</span>
